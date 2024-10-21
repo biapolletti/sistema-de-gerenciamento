@@ -1,0 +1,47 @@
+﻿@model List<Ofertas>
+@{
+    ViewData["Title"] = "Ofertas";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Listagem de Ofertas</h1>
+    <br />
+
+    <table class="table" id="table-ofertas">
+        <thead class="custom-bg">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Conteúdo</th>
+                <th scope="col">Valor</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ofertas in Model)
+            {
+                <tr>
+                    <td class="table-light">@ofertas.Nome</td>
+                    <td class="table-light">@ofertas.Conteudo</td>
+                    <td class="table-light">R$@(ofertas.Valor)</td>
+                    <td class="table-light">
+                        <a class="btn btn-primary" asp-controller="Ofertas" asp-action="Edit" asp-route-id="@ofertas.Id">Editar</a>
+                        <a class="btn btn-danger" asp-controller="Ofertas" asp-action="Delete" asp-route-id="@ofertas.Id" onclick="return confirm('Você tem certeza que deseja excluir esta oferta?')">Apagar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </br>
+    </br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-success" asp-controller="Ofertas" asp-action="Create">Cadatrar Nova Oferta</a>
+    </div>
+</div>

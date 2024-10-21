@@ -1,0 +1,79 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Cultivo";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Monitoramento Climático</h1>
+    <br />
+
+    <div class="d-flex justify-content-evenly mt-3">
+        <form class="form-inline justify-content-center mb-3" method="get">
+            <div class="form-floating mb-3 style=" style="width: 430px;">
+                <input class="form-control" id="city" name="city" placeholder="Digite o nome da cidade">
+                <label for="floatingInput">Digite o nome da cidade</label>
+            </div>
+            <button type="submit" class="btn btn-success btm-sm float-start">Pesquisar</button>
+        </form>
+        <div class="justify-content-center" style="width: 570px;">
+            <div class="card p-4">
+                @if (ViewBag.WeatherData != null)
+                {
+                    var weather = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(ViewBag.WeatherData);
+                    string condition = weather.weather[0].main.ToString().ToLower();
+                    string imageUrl = "";
+                    string conditionTranslated = "";
+
+                    switch (condition)
+                    {
+                        case "clear":
+                            imageUrl = "/img/clear.png";
+                            conditionTranslated = "Céu Limpo";
+                            break;
+                        case "clouds":
+                            imageUrl = "/img/clouds.png";
+                            conditionTranslated = "Nublado";
+                            break;
+                        case "rain":
+                            imageUrl = "/img/rain.png";
+                            conditionTranslated = "Chuva";
+                            break;
+                        case "snow":
+                            imageUrl = "/img/snow.png";
+                            conditionTranslated = "Neve";
+                            break;
+                        case "thunderstorm":
+                            imageUrl = "/img/thunderstorm.png";
+                            conditionTranslated = "Trovoada";
+                            break;
+                    }
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@weather.name, @weather.sys.country</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Clima: @conditionTranslated</h6>
+                            <p class="card-text">
+                                <img src="@imageUrl" alt="@weather.weather[0].main" style="width: 100px; height: 100px;" />
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-temperature-low"></i> Temperatura: @string.Format("{0:0}", (double)weather.main.temp - 273.15)°C<br>
+                                <i class="fas fa-tint"></i> Umidade: @weather.main.humidity%<br>
+                                <i class="fas fa-wind"></i> Velocidade do Vento: @weather.wind.speed m/s
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt"></i> Latitude @weather.coord.lat, Longitude @weather.coord.lon
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

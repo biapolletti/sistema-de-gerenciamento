@@ -1,0 +1,53 @@
+﻿@model List<Insumos>
+@{
+    ViewData["Title"] = "Insumos";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Listagem de Insumos</h1>
+    <br />
+
+    <table class="table" id="table-insumos">
+        <thead class="custom-bg">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor Unitário</th>
+                <th scope="col">Data de Validade</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var insumos in Model)
+            {
+                <tr>
+                    <td class="table-light">@insumos.Nome</td>
+                    <td class="table-light">@insumos.Fornecedor</td>
+                    <td class="table-light">@insumos.Tipo</td>
+                    <td class="table-light">@insumos.Quantidade</td>
+                    <td class="table-light">R$@(insumos.ValorUni)</td>
+                    <td class="table-light">@insumos.DataVal</td>
+                    <td class="table-light">
+                        <a class="btn btn-primary" asp-controller="Insumos" asp-action="Edit" asp-route-id="@insumos.Id">Editar</a>
+                        <a class="btn btn-danger" asp-controller="Insumos" asp-action="Delete" asp-route-id="@insumos.Id" onclick="return confirm('Você tem certeza que deseja excluir este insumo?')">Apagar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </br>
+    </br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-success" asp-controller="Insumos" asp-action="Create">Cadatrar Novo Insumo</a>
+    </div>
+</div>

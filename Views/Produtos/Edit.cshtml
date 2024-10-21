@@ -1,0 +1,48 @@
+﻿@model ProdutosDto
+@{
+    ViewData["Title"] = "Editar Produto";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Editar Produto</h1>
+    <br />
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input asp-for="Nome" class="form-control" placeholder="Nome">
+            <label for="floatingInput">Nome</label>
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Tipo" class="form-control" placeholder="Tipo">
+            <label for="floatingInput">Tipo</label>
+            @Html.ValidationMessageFor(x => x.Tipo)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Quantidade" class="form-control" placeholder="Quantidade">
+            <label for="floatingInput">Quantidade</label>
+            @Html.ValidationMessageFor(x => x.Quantidade)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="ValorUni" class="form-control" placeholder="ValorUni">
+            <label for="floatingInput">Valor Unitário</label>
+            @Html.ValidationMessageFor(x => x.ValorUni)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="DataVal" class="form-control" placeholder="DataVal">
+            <label for="floatingInput">Data de Validade</label>
+            @Html.ValidationMessageFor(x => x.DataVal)
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-secondary" asp-controller="Produtos" asp-action="Index" role="button">Voltar</a>
+            <button type="submit" class="btn btn-success">Alterar</button>
+        </div>
+    </form>
+</div>

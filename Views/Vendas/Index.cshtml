@@ -1,0 +1,52 @@
+﻿@model List<Vendas>
+@{
+    ViewData["Title"] = "Vendas";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Listagem de Vendas</h1>
+    <br />
+
+    <table class="table" id="table-vendas">
+        <thead class="custom-bg">
+            <tr>
+                <th scope="col">Data de Venda</th>
+                <th scope="col">Data de Entrega</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Quantidade de Itens</th>
+                <th scope="col">Vendedor</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vendas in Model)
+            {
+                <tr>
+                    <td class="table-light">@vendas.DataVe</td>
+                    <td class="table-light">@vendas.DataEn</td>
+                    <td class="table-light">R$@(vendas.Valor)</td>
+                    <td class="table-light">@vendas.QuantidadeItens</td>
+                    <td class="table-light">@vendas.Vendedor</td>
+                    <td class="table-light">
+                        <a class="btn btn-primary" asp-controller="Vendas" asp-action="Edit" asp-route-id="@vendas.Id">Editar</a>
+                        <a class="btn btn-danger" asp-controller="Vendas" asp-action="Delete" asp-route-id="@vendas.Id" onclick="return confirm('Você tem certeza que deseja excluir esta venda?')">Apagar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </br>
+    </br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-success" asp-controller="Vendas" asp-action="Create">Cadatrar Nova Venda</a>
+        <a class="btn btn-success" asp-controller="Vendas" asp-action="VendasPdf">Gerar Relatório</a>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model ClientesDto
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Editar Cliente</h1>
+    <br />
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input asp-for="Nome" class="form-control" placeholder="Nome">
+            <label for="floatingInput">Nome</label>
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Email" class="form-control" placeholder="Email">
+            <label for="floatingInput">Email</label>
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Cpf" class="form-control" placeholder="Cpf">
+            <label for="floatingInput">CPF</label>
+            @Html.ValidationMessageFor(x => x.Cpf)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Telefone" class="form-control" placeholder="Telefone">
+            <label for="floatingInput">Telefone</label>
+            @Html.ValidationMessageFor(x => x.Telefone)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Endereco" class="form-control" placeholder="Endereco">
+            <label for="floatingInput">Endereço</label>
+            @Html.ValidationMessageFor(x => x.Endereco)
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-secondary" asp-controller="Clientes" asp-action="Index" role="button">Voltar</a>
+            <button type="submit" class="btn btn-success">Alterar</button>
+        </div>
+    </form>
+</div>

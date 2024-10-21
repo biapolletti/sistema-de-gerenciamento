@@ -1,0 +1,73 @@
+﻿@model Pim_Web.ViewModels.UsuariosVM;
+@{
+    ViewData["Title"] = "Cadastro";
+}
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<br />
+
+<body>
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-4 card p-4">
+        <h2 class="text-center fs-2">Cadastro</h2>
+        <br />
+        <form asp-controller="Usuarios" asp-action="Registrar" method="post">
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="Name" class="form-control" placeholder="Usuario" />
+                <label for="floatingInput">Usuário</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="Email" class="form-control" placeholder="Email" />
+                <label for="floatingInput">E-mail</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="Telefone" class="form-control" placeholder="Telefone" />
+                <label for="floatingInput">Telefone</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="Adress" class="form-control" placeholder="Endereco" />
+                <label for="floatingInput">Endereço</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="Cpf" class="form-control" placeholder="Cpf" />
+                <label for="floatingInput">CPF</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" required asp-for="DataNasc" class="form-control" placeholder="DataNasc" />
+                <label for="floatingInput">Data de Nascimento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" required asp-for="Password" class="form-control" placeholder="Senha" />
+                <label for="floatingInput">Senha</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" required asp-for="ConPassword" class="form-control" placeholder="ConfirmarSenha" />
+                <label for="floatingInput">Confirmar Senha</label>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-8">
+                    <a asp-controller="Usuarios" asp-action="Login" class="text-success text-decoration-none float-start mt-2">Já possui uma conta?</a>
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-success btm-sm float-end">Cadastrar</button>
+                </div>
+            </div>
+            @if (ViewData["Mensagem"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewData["Mensagem"]
+                </div>
+            }
+        </form>
+    </div>
+</div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>

@@ -1,0 +1,38 @@
+﻿@model OfertasDto
+@{
+    ViewData["Title"] = "Adicionar Oferta";
+}
+
+<style>
+    .custom-bg {
+        background-color: #009688;
+    }
+</style>
+
+<div class="text-center">
+    <br />
+    <h1 class="fs-2">Adicionar Fornecedor</h1>
+    <br />
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input asp-for="Nome" class="form-control" placeholder="Nome">
+            <label for="floatingInput">Nome</label>
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Conteudo" class="form-control" placeholder="Conteudo">
+            <label for="floatingInput">Conteúdo</label>
+            @Html.ValidationMessageFor(x => x.Conteudo)
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Valor" class="form-control" placeholder="Valor">
+            <label for="floatingInput">Valor</label>
+            @Html.ValidationMessageFor(x => x.Valor)
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-secondary" asp-controller="Ofertas" asp-action="Index" role="button">Voltar</a>
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+﻿@model Pim_Web.ViewModels.LoginVM;
+@{
+    ViewData["Title"] = "Login";
+}
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<br />
+<br />
+<br />
+<br />
+
+<body>
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-4 card p-4">
+            <h2 class="text-center fs-2">Login</h2>
+            <br />
+            <form asp-controller="Usuarios" asp-action="Login" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" required asp-for="Name" class="form-control" placeholder="Usuario" />
+                    <label for="floatingInput">Usuário</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" required asp-for="Password" class="form-control" placeholder="Senha" />
+                    <label for="floatingInput">Senha</label>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-8">
+                        <a asp-controller="Usuarios" asp-action="Registrar" class="text-success text-decoration-none float-start mt-2">Não possui uma conta?</a>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-success btm-sm float-end">Login</button>
+                    </div>
+                </div>
+                @if (ViewData["Mensagem"] != null)
+                {
+                    <br />
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Mensagem"]
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
